@@ -12,7 +12,20 @@ import {
   SearchInput,
   SidebarButton,
 } from "./style";
+import * as EmailValidator from "email-validator";
 const Sidebar = () => {
+  const addChat = (e) => {
+    e.preventDefault();
+    const input = prompt(
+      "Please add an email address for the user you wish to chat with"
+    );
+    if (!input) return null; //prevent empty input value
+
+    //check if the input email is valid
+    if (EmailValidator.validate(input)) {
+      //We need to add the chat into the DB "chats" collection
+    }
+  };
   return (
     <Container>
       <Header>
@@ -30,7 +43,7 @@ const Sidebar = () => {
         <SearchIcon />
         <SearchInput placeholder="Search in chats" />
       </DivSearch>
-      <SidebarButton>START A NEW CHAT</SidebarButton>
+      <SidebarButton onClick={addChat}>START A NEW CHAT</SidebarButton>
       {/* <ChatList></ChatList> */}
     </Container>
   );
